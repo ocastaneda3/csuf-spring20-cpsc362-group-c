@@ -1,2 +1,2 @@
-# csuf-spring20-cpsc362-group-c
-CPSC 362 - Group C Project
+# CSUF CPSC 362 - Group Project
+CPSC 362 - Group C
