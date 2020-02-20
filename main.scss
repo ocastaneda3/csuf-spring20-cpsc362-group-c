@@ -1,5 +1,6 @@
-$theme-colors: (
-  "primary": #0074d9,
-  "danger": #ff4136
-);
+@import url('https://fonts.googleapis.com/css?family=Saira+Semi+Condensed&display=swap');
+$will-it-work: 'Saira Semi Condensed', sans-serif;
+h4,h3,h2,h5,p,a{
+    font-family: $will-it-work;
+}
 @import "node_modules/bootstrap/scss/bootstrap";
