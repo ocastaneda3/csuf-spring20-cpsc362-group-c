@@ -42,3 +42,4 @@ const sendHttpRequest = (method, url) => {
 var youareel = 'https://api.rawg.io/api/games?ordering=+rating&page_size=4&page='
 var randompage = youareel + Math.floor(Math.random() * 10) + 1;
 sendHttpRequest('GET', randompage);
+
