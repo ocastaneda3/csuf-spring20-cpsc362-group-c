@@ -1,4 +1,3 @@
-
 /************************************************/
 /* Function: nextPage                           */
 /*----------------------------------------------*/
@@ -43,6 +42,11 @@ const prevPage = () => {
 	console.log('Prev: ' + page_count.value);
 };
 
+const printGameTtitle = () => {
+	console.log(this.textContent);
+};
+
+
 /************************************************/
 /* Function: sendHttpRequest                    */
 /*----------------------------------------------*/
@@ -63,6 +67,12 @@ const sendHttpRequest = (method, url) => {
 			// Get Game Name
 			const h1 = document.createElement('h1');
 			h1.textContent = game.name;
+			game_card.title = game.slug;
+			game_card.onclick = function(){
+				// console.log(String(this.textContent).split(' ').join('-').toLocaleLowerCase())
+				console.log(this.title);
+				window.location.href = './game.html?title='.concat(this.title);
+			};
 			
 			// Get Game Image
 			const img = document.createElement('img');
@@ -74,7 +84,6 @@ const sendHttpRequest = (method, url) => {
 			container.appendChild(game_card);
 		});
 	};
-	
 	request.send();
 };
 
@@ -113,7 +122,6 @@ app.appendChild(page_count);
 /* Initialize Data                              */
 /************************************************/
 sendHttpRequest('GET', 'https://api.rawg.io/api/games');
-
 
 nextBtn.addEventListener('click', nextPage);
 prevBtn.addEventListener('click', prevPage);
