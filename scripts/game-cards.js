@@ -62,10 +62,11 @@ const sendHttpRequest = (method, url) => {
 	
 		data.results.forEach(game => {
 			const game_card = document.createElement('div');
-			game_card.setAttribute('class', 'card');
+			game_card.setAttribute('class', 'card border-secondary mb-3');
 	
 			// Get Game Name
-			const h1 = document.createElement('h1');
+			const h1 = document.createElement('div');
+			h1.setAttribute('class', 'card-header')
 			h1.textContent = game.name;
 			game_card.title = game.slug;
 			game_card.onclick = function(){
@@ -100,8 +101,8 @@ navCenter.setAttribute('class', 'section');
 const nextBtn = document.createElement('button');
 const prevBtn = document.createElement('button');
 
-nextBtn.setAttribute('class', 'myButton');
-prevBtn.setAttribute('class', 'myButton');
+nextBtn.setAttribute('class', 'btn btn-secondary');
+prevBtn.setAttribute('class', 'btn btn-secondary');
 
 nextBtn.innerHTML = 'Next';
 prevBtn.innerHTML = 'Prev';
