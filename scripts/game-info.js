@@ -21,6 +21,7 @@ request.onload = () => {
     const image = document.createElement('img');
     image.setAttribute('src', ''.concat(data.background_image));
     image.setAttribute('class', 'card-img')
+    
     const gamecontent = document.createElement('div')
     gamecontent.setAttribute('class', 'card-img-overlay')
     const gametitle = document.createElement('h2')
