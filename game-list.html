@@ -13,6 +13,37 @@
     </head>
 
     <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#"><img src="images/favicon.png" width="40" height="40">  Game Buddy</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./game-list.html">Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./studios.html">Studios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./profile.html">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./login.html">Login/Sign up</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+
         <!--Review system -->
         <h2>Game Rating </h2>
         <div class="stars" data-rating="0">
@@ -22,24 +53,10 @@
             <span class="star">&nbsp;</span>
             <span class="star">&nbsp;</span>
         </div>
+        <script src="./scripts/rating.js"></script>
 
-        <!-- <form action="/action_page.php">
-            <label for="Gname">Game Title:</label>
-            <input type="text" id="Gname" name="Gname" >
-            <label for="Username">Username:</label>
-            <input type="text" id="Uname" name="Uname">
-
-            <p1><label for="Review">Review Summary:</label>
-                <input type="text" id="Review Summary" name="Review Summary"><br>
-            </p1> 
-            <input type="submit" value="Submit">
-
-        </form> -->
-        <script src="./scripts/rating.js">
-
-        </script>
-        
-        <div id="root"></div>
+        <!-- Main Body -->
+        <div id="game-card-list"></div>
         <script src="./scripts/game-cards.js"></script>
     </body>
 </html>
