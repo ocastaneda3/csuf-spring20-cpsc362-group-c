@@ -42,47 +42,46 @@ const prevPage = () => {
 	console.log('Prev: ' + page_count.value);
 };
 
+/************************************************/
+/* Function: getPlatformsList                   */
+/*----------------------------------------------*/
+/* - Get the platforms that each game is on     */
+/************************************************/
 const getPlatformsList = (game, platforms_list) => {
 	game.parent_platforms.forEach(x => {
 		const new_platform = document.createElement('div');
 
+		// Switch-Statement to Assign Platforms
 		switch (x.platform.name) {
 			case 'PC':
 				new_platform.className = 'platforms platform__medium platform__pc';
 				new_platform.style.backgroundImage = 'url(./images/platform_pc_white_logo.svg';
 				break;
 			case 'PlayStation':
-				// console.log(x.platform.name);
 				new_platform.className = 'platforms platform__medium platform__playstation';
 				new_platform.style.backgroundImage = 'url(./images/platform_playstation_white_logo.svg';
 				break;
 			case 'Xbox':
-				// console.log(x.platform.name);
 				new_platform.className = 'platforms platform__medium platform__xbox';
 				new_platform.style.backgroundImage = 'url(./images/platform_xbox_white_logo.svg';
 				break;
 			case 'Apple Macintosh':
-				// console.log(x.platform.name);
 				new_platform.className = 'platforms platform__medium platform__mac';
 				new_platform.style.backgroundImage = 'url(./images/platform_mac_white_logo.svg';
 				break;
 			case 'Linux':
-				// console.log(x.platform.name);
 				new_platform.className = 'platforms platform__medium platform__linux';
 				new_platform.style.backgroundImage = 'url(./images/platform_linux_white_logo.svg';
 				break;
 			case 'Nintendo':
-				// console.log(x.platform.name);
 				new_platform.className = 'platforms platform__medium platform__nintendo';
 				new_platform.style.backgroundImage = 'url(./images/platform_nintendo_white_logo.svg';
 				break;
 			case 'iOS':
-				// console.log(x.platform.name);
 				new_platform.className = 'platforms platform__medium platform__ios';
 				new_platform.style.backgroundImage = 'url(./images/platform_ios_white_logo.svg';
 				break;
 			case 'Android':
-				// console.log(x.platform.name);
 				new_platform.className = 'platforms platform__medium platform__android';
 				new_platform.style.backgroundImage = 'url(./images/platform_android_white_logo.svg';
 				break;
@@ -90,6 +89,8 @@ const getPlatformsList = (game, platforms_list) => {
 				console.log('Need Logo '.concat(x.platform.name));
 				break;
 		}
+
+		// Append new platform to list
 		platforms_list.appendChild(new_platform);
 	});
 };
@@ -118,22 +119,17 @@ const sendHttpRequest = (method, url) => {
 
 			// Get Platforms
 			const platforms_list = document.createElement('div');
-			// platforms.setAttribute('class', 'platforms');
 			platforms_list.className = 'platforms';
-
 			getPlatformsList(game, platforms_list);
 
 			// Get Game Name
 			const game_title = document.createElement('div');
-
 			game_title.setAttribute('class', 'card-header')
 			game_title.textContent = game.name;
 			game_card.title = game.slug;
 
 			// Set onClick Function
 			game_card.onclick = function(){
-				// console.log(String(this.textContent).split(' ').join('-').toLocaleLowerCase())
-				console.log(this.title);
 				window.location.href = './game.html?title='.concat(this.title);
 			};
 			
