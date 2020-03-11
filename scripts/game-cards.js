@@ -48,41 +48,43 @@ const prevPage = () => {
 /* - Get the platforms that each game is on     */
 /************************************************/
 const getPlatformsList = (game, platforms_list) => {
+	const arr = document.createElement('div');
+	arr.className = 'platforms game-card-medium__platforms'
 	game.parent_platforms.forEach(x => {
 		const new_platform = document.createElement('div');
 
 		// Switch-Statement to Assign Platforms
 		switch (x.platform.name) {
 			case 'PC':
-				new_platform.className = 'platforms platform__medium platform__pc';
+				new_platform.className = 'platforms__platform platform__pc';
 				new_platform.style.backgroundImage = 'url(./images/platform_pc_white_logo.svg';
 				break;
 			case 'PlayStation':
-				new_platform.className = 'platforms platform__medium platform__playstation';
+				new_platform.className = 'platforms__platform platform__playstation';
 				new_platform.style.backgroundImage = 'url(./images/platform_playstation_white_logo.svg';
 				break;
 			case 'Xbox':
-				new_platform.className = 'platforms platform__medium platform__xbox';
+				new_platform.className = 'platforms__platform platform__xbox';
 				new_platform.style.backgroundImage = 'url(./images/platform_xbox_white_logo.svg';
 				break;
 			case 'Apple Macintosh':
-				new_platform.className = 'platforms platform__medium platform__mac';
+				new_platform.className = 'platforms__platform platform__mac';
 				new_platform.style.backgroundImage = 'url(./images/platform_mac_white_logo.svg';
 				break;
 			case 'Linux':
-				new_platform.className = 'platforms platform__medium platform__linux';
+				new_platform.className = 'platforms__platform platform__linux';
 				new_platform.style.backgroundImage = 'url(./images/platform_linux_white_logo.svg';
 				break;
 			case 'Nintendo':
-				new_platform.className = 'platforms platform__medium platform__nintendo';
+				new_platform.className = 'platforms__platform platform__nintendo';
 				new_platform.style.backgroundImage = 'url(./images/platform_nintendo_white_logo.svg';
 				break;
 			case 'iOS':
-				new_platform.className = 'platforms platform__medium platform__ios';
+				new_platform.className = 'platforms__platform platform__ios';
 				new_platform.style.backgroundImage = 'url(./images/platform_ios_white_logo.svg';
 				break;
 			case 'Android':
-				new_platform.className = 'platforms platform__medium platform__android';
+				new_platform.className = 'platforms__platform platform__android';
 				new_platform.style.backgroundImage = 'url(./images/platform_android_white_logo.svg';
 				break;
 			default:
@@ -91,8 +93,9 @@ const getPlatformsList = (game, platforms_list) => {
 		}
 
 		// Append new platform to list
-		platforms_list.appendChild(new_platform);
+		arr.appendChild(new_platform);
 	});
+	platforms_list.appendChild(arr);
 };
 
 /************************************************/
@@ -120,7 +123,7 @@ const sendHttpRequest = (method, url) => {
 
 			// Get Platforms
 			const platforms_list = document.createElement('div');
-			platforms_list.className = 'platforms';
+			platforms_list.className = 'game-card-medium__meta';
 			getPlatformsList(game, platforms_list);
 
 			// Get Game Name
