@@ -19,21 +19,14 @@ const sendHttpRequest = (method, url) => {
 			const cardheader = document.createElement('div')
 			cardheader.setAttribute('class', 'card-header')
 			cardheader.textContent = game.name
-			const cardbody = document.createElement('div')
-			cardbody.setAttribute('class','card-body')
-			// const cardtitle = document.createElement('h4')
-			// cardtitle.setAttribute('class', 'card-title')
-			// cardtitle.textContent = game.name
-			const cardimg = document.createElement('img');
-			cardimg.setAttribute('class', 'card-img');
-			cardimg.setAttribute('width', '100')
-			cardimg.src = game.background_image
+			const game_img = document.createElement('img');
+			game_img.className = 'background';
+			game_img.src = game.background_image;
 			gamerow.appendChild(column)
 			column.appendChild(card)
 			card.appendChild(cardheader)
-			card.appendChild(cardbody)
 			// cardbody.appendChild(cardtitle)
-			cardbody.appendChild(cardimg)
+			card.appendChild(game_img)
 		});
 	};
 	
