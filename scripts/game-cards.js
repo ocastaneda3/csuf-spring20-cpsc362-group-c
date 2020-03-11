@@ -110,7 +110,8 @@ const sendHttpRequest = (method, url) => {
 	
 		data.results.forEach(game => {
 			const game_card = document.createElement('div');
-			game_card.setAttribute('class', 'card border-secondary mb-3');
+			// game_card.setAttribute('class', 'card border-secondary mb-3');
+			game_card.className = 'card border-secondary mb-3';
 	
 			// Get Game Image
 			const game_img = document.createElement('img');
@@ -124,7 +125,8 @@ const sendHttpRequest = (method, url) => {
 
 			// Get Game Name
 			const game_title = document.createElement('div');
-			game_title.setAttribute('class', 'card-header')
+			// game_title.setAttribute('class', 'card-header')
+			game_title.className = 'heading heading_4';
 			game_title.textContent = game.name;
 			game_card.title = game.slug;
 

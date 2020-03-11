@@ -15,6 +15,21 @@ html {
   margin: 0 auto;
 }
 
+.heading {
+  box-sizing: border-box;
+  margin: 48px 0 24px;
+  color: #ffffff;
+  text-align: left;
+}
+
+.heading_4 {
+  font-size: 14px;
+  line-height: 28px;
+  font-weight: 700;
+  margin: 5px;
+  margin-bottom: 0px;
+}
+
 h1 {
   text-align: center;
   padding: 1.5rem 2.5rem;
@@ -65,20 +80,16 @@ h1 {
 
 /* Platforms List CSS */
 .platforms {
-  margin: 2px;
+  margin: 5px;
   display: inline-block;
-  justify-content: left; 
-  line-height: 0;
   transition: opacity .3s;
   background-repeat: no-repeat;
-  background-position: 50%;
   background-size: contain;
 }
 
 .platform__medium {
   width: 20px;
   height: 20px;
-  
 }
 
 .platform__android {

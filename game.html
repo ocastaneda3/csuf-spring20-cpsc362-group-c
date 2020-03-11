@@ -7,6 +7,7 @@
 
         <link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet">
         <link href="./styles/game-info.css" rel="stylesheet">
+        <link href="./styles/rating.css" rel="stylesheet">
     </head>
 
     <body>
@@ -35,14 +36,23 @@
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search Games . . .">
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
         </nav>
-
+            <!--Review system -->
+            <div class="stars" data-rating="0">
+                <span class="star">&nbsp;</span>
+                <span class="star">&nbsp;</span>
+                <span class="star">&nbsp;</span>
+                <span class="star">&nbsp;</span>
+                <span class="star">&nbsp;</span>
+            </div>
+            <script src="./scripts/rating.js"></script>
         <!-- Main Body -->
         <div id="game_info">
+
         </div>
         <script src="./scripts/new_game_info.js"></script>
     </body>
