@@ -3,6 +3,31 @@
 /*----------------------------------------------*/
 /* - Clear and load next page of games          */
 /************************************************/
+var sortedby
+function sortGames(){
+	sortedby = document.getElementById('sortSelect')
+	sortedby = sortedby.options[sortedby.selectedIndex].text;
+	if(sortedby == "Default") sortedby = ""
+	if(sortedby == "Oldest") sortedby = "&ordering=-released"
+	if(sortedby == "Newest") sortedby = "&ordering=released"
+	if(sortedby == "Rating") sortedby = "&ordering=rating"
+	if(sortedby == "Name") sortedby = "&ordering=name"
+	console.log(sortedby)
+	resortPage()
+}
+const resortPage = () => {
+	// Clear Page
+	var del = document.getElementById('cards');
+
+	while(del.firstChild){
+		del.removeChild(del.firstChild);
+		console.log('Deleting . . .');
+	}
+	console.log('Next: ' + page_count.value);
+
+	// Load New Games
+	sendHttpRequest('GET', 'https://api.rawg.io/api/games'.concat('?page=',page_count.value).concat(sortedby));
+};
 const nextPage = () => {
 	page_count.value = Number(page_count.value) + 1;
 
@@ -16,7 +41,7 @@ const nextPage = () => {
 	console.log('Next: ' + page_count.value);
 
 	// Load New Games
-	sendHttpRequest('GET', 'https://api.rawg.io/api/games'.concat('?page=',page_count.value));
+	sendHttpRequest('GET', 'https://api.rawg.io/api/games'.concat('?page=',page_count.value).concat(sortedby));
 };
 
 /************************************************/
@@ -37,7 +62,7 @@ const prevPage = () => {
 		}
 
 		// Load New Games
-		sendHttpRequest('GET', 'https://api.rawg.io/api/games'.concat('?page=',page_count.value));
+		sendHttpRequest('GET', 'https://api.rawg.io/api/games'.concat('?page=',page_count.value).concat(sortedby));
 	}
 	console.log('Prev: ' + page_count.value);
 };
