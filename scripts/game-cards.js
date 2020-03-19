@@ -3,19 +3,28 @@
 /*----------------------------------------------*/
 /* - Clear and load next page of games          */
 /************************************************/
-var sortedby
+
+const sortType = () => {
+	const sortedby = document.getElementById('sortSelect');
+	var sort = sortedby.options[sortedby.selectedIndex].text;
+
+	if(sort == "Default") sort = 'Default';
+	if(sort == "Oldest") sort = 'released';
+	if(sort == "Newest") sort = '-released';
+	if(sort == "Rating") sort = 'rating';
+	if(sort == "Name") sort = 'name';
+
+	return sort;
+};
+
 function sortGames(){
-	sortedby = document.getElementById('sortSelect')
-	sortedby = sortedby.options[sortedby.selectedIndex].text;
-	if(sortedby == "Default") sortedby = ""
-	if(sortedby == "Oldest") sortedby = "&ordering=-released"
-	if(sortedby == "Newest") sortedby = "&ordering=released"
-	if(sortedby == "Rating") sortedby = "&ordering=rating"
-	if(sortedby == "Name") sortedby = "&ordering=name"
-	console.log(sortedby)
-	resortPage()
-}
-const resortPage = () => {
+	console.log(sortType())
+	resortPage(sortType())
+};
+
+const resortPage = (sort) => {
+	page_count.value = 1
+
 	// Clear Page
 	var del = document.getElementById('cards');
 
@@ -23,14 +32,18 @@ const resortPage = () => {
 		del.removeChild(del.firstChild);
 		console.log('Deleting . . .');
 	}
-	console.log('Next: ' + page_count.value);
+	console.log('Restoring: ' + page_count.value);
 
 	// Load New Games
-	sendHttpRequest('GET', 'https://api.rawg.io/api/games'.concat('?page=',page_count.value).concat(sortedby));
+	sendHttpRequest('GET', 'https://api.rawg.io/api/games?dates=1975-01-01,2022-12-31.1975-01-01,2022-12-31'.concat('&ordering=', sort).concat('&page=', page_count.value));
 };
+
 const nextPage = () => {
 	page_count.value = Number(page_count.value) + 1;
 
+	const sortedby = document.getElementById('sortSelect');
+	var sort = sortedby.options[sortedby.selectedIndex].text;
+
 	// Clear Page
 	var del = document.getElementById('cards');
 
@@ -41,7 +54,7 @@ const nextPage = () => {
 	console.log('Next: ' + page_count.value);
 
 	// Load New Games
-	sendHttpRequest('GET', 'https://api.rawg.io/api/games'.concat('?page=',page_count.value).concat(sortedby));
+	sendHttpRequest('GET', 'https://api.rawg.io/api/games?dates=1975-01-01,2022-12-31.1975-01-01,2022-12-31'.concat('&ordering=', sortType()).concat('&page=', page_count.value));
 };
 
 /************************************************/
@@ -54,6 +67,9 @@ const prevPage = () => {
 		// Clear Page
 		page_count.value = Number(page_count.value) - 1;
 
+		const sortedby = document.getElementById('sortSelect');
+		var sort = sortedby.options[sortedby.selectedIndex].text;
+
 		var del = document.getElementById('cards');
 
 		while(del.firstChild){
@@ -62,7 +78,7 @@ const prevPage = () => {
 		}
 
 		// Load New Games
-		sendHttpRequest('GET', 'https://api.rawg.io/api/games'.concat('?page=',page_count.value).concat(sortedby));
+		sendHttpRequest('GET', 'https://api.rawg.io/api/games?dates=1975-01-01,2022-12-31.1975-01-01,2022-12-31'.concat('&ordering=', sortType()).concat('&page=', page_count.value));
 	}
 	console.log('Prev: ' + page_count.value);
 };
@@ -75,51 +91,55 @@ const prevPage = () => {
 const getPlatformsList = (game, platforms_list) => {
 	const arr = document.createElement('div');
 	arr.className = 'platforms game-card-medium__platforms'
-	game.parent_platforms.forEach(x => {
-		const new_platform = document.createElement('div');
+	if(game.platforms != null){
+		game.parent_platforms.forEach(x => {
+			const new_platform = document.createElement('div');
 
-		// Switch-Statement to Assign Platforms
-		switch (x.platform.name) {
-			case 'PC':
-				new_platform.className = 'platforms__platform platform__pc';
-				new_platform.style.backgroundImage = 'url(./images/platform_pc_white_logo.svg';
-				break;
-			case 'PlayStation':
-				new_platform.className = 'platforms__platform platform__playstation';
-				new_platform.style.backgroundImage = 'url(./images/platform_playstation_white_logo.svg';
-				break;
-			case 'Xbox':
-				new_platform.className = 'platforms__platform platform__xbox';
-				new_platform.style.backgroundImage = 'url(./images/platform_xbox_white_logo.svg';
-				break;
-			case 'Apple Macintosh':
-				new_platform.className = 'platforms__platform platform__mac';
-				new_platform.style.backgroundImage = 'url(./images/platform_mac_white_logo.svg';
-				break;
-			case 'Linux':
-				new_platform.className = 'platforms__platform platform__linux';
-				new_platform.style.backgroundImage = 'url(./images/platform_linux_white_logo.svg';
-				break;
-			case 'Nintendo':
-				new_platform.className = 'platforms__platform platform__nintendo';
-				new_platform.style.backgroundImage = 'url(./images/platform_nintendo_white_logo.svg';
-				break;
-			case 'iOS':
-				new_platform.className = 'platforms__platform platform__ios';
-				new_platform.style.backgroundImage = 'url(./images/platform_ios_white_logo.svg';
-				break;
-			case 'Android':
-				new_platform.className = 'platforms__platform platform__android';
-				new_platform.style.backgroundImage = 'url(./images/platform_android_white_logo.svg';
-				break;
-			default:
-				console.log('Need Logo '.concat(x.platform.name));
-				break;
-		}
-
-		// Append new platform to list
-		arr.appendChild(new_platform);
-	});
+			// Switch-Statement to Assign Platforms
+			switch (x.platform.name) {
+				case 'PC':
+					new_platform.className = 'platforms__platform platform__pc';
+					new_platform.style.backgroundImage = 'url(./images/platform_pc_white_logo.svg';
+					break;
+				case 'PlayStation':
+					new_platform.className = 'platforms__platform platform__playstation';
+					new_platform.style.backgroundImage = 'url(./images/platform_playstation_white_logo.svg';
+					break;
+				case 'Xbox':
+					new_platform.className = 'platforms__platform platform__xbox';
+					new_platform.style.backgroundImage = 'url(./images/platform_xbox_white_logo.svg';
+					break;
+				case 'Apple Macintosh':
+					new_platform.className = 'platforms__platform platform__mac';
+					new_platform.style.backgroundImage = 'url(./images/platform_mac_white_logo.svg';
+					break;
+				case 'Linux':
+					new_platform.className = 'platforms__platform platform__linux';
+					new_platform.style.backgroundImage = 'url(./images/platform_linux_white_logo.svg';
+					break;
+				case 'Nintendo':
+					new_platform.className = 'platforms__platform platform__nintendo';
+					new_platform.style.backgroundImage = 'url(./images/platform_nintendo_white_logo.svg';
+					break;
+				case 'iOS':
+					new_platform.className = 'platforms__platform platform__ios';
+					new_platform.style.backgroundImage = 'url(./images/platform_ios_white_logo.svg';
+					break;
+				case 'Android':
+					new_platform.className = 'platforms__platform platform__android';
+					new_platform.style.backgroundImage = 'url(./images/platform_android_white_logo.svg';
+					break;
+				default:
+					console.log('Need Logo '.concat(x.platform.name));
+					break;
+			}
+			// Append new platform to list
+			arr.appendChild(new_platform);
+		});
+	}
+	else{
+		console.log('No Platforms');
+	}
 	platforms_list.appendChild(arr);
 };
 
@@ -129,6 +149,8 @@ const getPlatformsList = (game, platforms_list) => {
 /* - Send XMLHttpRequest to get data          */
 /************************************************/
 const sendHttpRequest = (method, url) => {
+
+	console.log(url);
 	var request = new XMLHttpRequest();
 
 	request.open(method, url);
@@ -207,7 +229,7 @@ app.appendChild(page_count);
 /************************************************/
 /* Initialize Data                              */
 /************************************************/
-sendHttpRequest('GET', 'https://api.rawg.io/api/games');
+sendHttpRequest('GET', 'https://api.rawg.io/api/games?dates=1975-01-01,2022-12-31.1975-01-01,2022-12-31&ordering=Default&page=1');
 
 nextBtn.addEventListener('click', nextPage);
 prevBtn.addEventListener('click', prevPage);
