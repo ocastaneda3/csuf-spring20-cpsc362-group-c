@@ -9,6 +9,9 @@
         <link href="./styles/game-info.css" rel="stylesheet">
         <link href="./styles/rating.css" rel="stylesheet">
         <link href="./gameinfo.css" rel="stylesheet">
+        <link href="https://vjs.zencdn.net/7.7.5/video-js.css" rel="stylesheet" />
+        <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+        <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
     </head>
 
     <body>
@@ -60,12 +63,35 @@
                         <p id="game-description"></p>
                     </div>
                     <div id="media-column" class="col-md-6">
-                        <div id="game-video"></div>
+                        <div id="game-video">
+                            <video
+                            id="my-video"
+                            class="video-js"
+                            controls
+                            preload="auto"
+                            width="720"
+                            height="405"
+                            poster="MY_VIDEO_POSTER.jpg"
+                            data-setup="{}"
+                          >
+                            <!-- <source src="https://thumbs.gfycat.com/AnchoredSoggyGarpike-mobile.mp4" type="video/mp4" /> -->
+                            <p class="vjs-no-js">
+                              To view this video please enable JavaScript, and consider upgrading to a
+                              web browser that
+                              <a href="https://videojs.com/html5-video-support/" target="_blank"
+                                >supports HTML5 video</a
+                              >
+                            </p>
+                          </video>
+                        </div>
+                        
                         
                     </div>
                 </div>
             </div>
         </div>
+        
         <script src="./scripts/new_game_info.js"></script>
+        
     </body>
 </html>

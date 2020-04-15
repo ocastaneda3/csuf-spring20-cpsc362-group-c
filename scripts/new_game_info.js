@@ -1,21 +1,17 @@
-const add_video_content = (data_, content_column) => {
+var add_video_content = (data_, content_column) => {
+    // const container = document.getElementById('media-column')
+    var video = document.getElementById('my-video')
 
-    const video_temp1 = document.createElement('div');
-    video_temp1.setAttribute('class', 'game__movie');
-
-    const video_temp2 = document.createElement('div');
-    video_temp2.setAttribute('class', 'game-card-video');
-
-    const video = document.createElement('video');
-    video.setAttribute('class', 'game-card-video__video');
-    video.setAttribute('playsinline', '');
-    video.setAttribute('loop', '');
-    video.setAttribute('src', '[vid_url]'.replace('[vid_url]', data_.clip.clips.full));
-    video.autoplay = true;
-
-    video_temp2.appendChild(video);
-    video_temp1.appendChild(video_temp2);
-    content_column.appendChild(video_temp1);
+    var source1 = document.createElement('source')
+    source1.setAttribute('src', '[vid_url]'.replace('[vid_url]', data_.clip.clips.full))
+    source1.type = 'video/mp4'
+    video.appendChild(source1)
+    var videothing = getElementById('game-video')
+    videothing.setAttribute('poster', setAttribute('src', '[vid_url]'.replace('[vid_url]', data_.clip.clips.preview)))
+    var script = document.createElement('script')
+    script.src = 'https://vjs.zencdn.net/7.7.5/video.js'
+    var body = getElementsByTagName("BODY")[0]
+    body.appendChild(script)
 }
 var stylesheet = document.createElement('link');
 
@@ -84,6 +80,7 @@ request.onload = () => {
     // game_card.appendChild(game_content);
 
     // app.appendChild(game_card);
+
 };
 
 request.send();
