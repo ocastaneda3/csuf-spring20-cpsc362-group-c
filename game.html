@@ -42,18 +42,29 @@
                 </form>
             </div>
         </nav>
-            <!--Review system -->
-            <div class="stars" data-rating="0">
-                <span class="star">&nbsp;</span>
-                <span class="star">&nbsp;</span>
-                <span class="star">&nbsp;</span>
-                <span class="star">&nbsp;</span>
-                <span class="star">&nbsp;</span>
-            </div>
-            <script src="./scripts/rating.js"></script>
+        <!--Review system -->
+        <div class="stars" data-rating="0">
+            <span class="star">&nbsp;</span>
+            <span class="star">&nbsp;</span>
+            <span class="star">&nbsp;</span>
+            <span class="star">&nbsp;</span>
+            <span class="star">&nbsp;</span>
+        </div>
+        <script src="./scripts/rating.js"></script>
         <!-- Main Body -->
-        <div id="game_info">
-
+        <div id="game-info" class="card bg-dark text-black border-0">
+            <div class="card-img-overlay">
+                <div class="row">
+                    <div id="data-column" class="col-md-6">
+                        <h2 id='game_title'></h2>
+                        <p id="game-description"></p>
+                    </div>
+                    <div id="media-column" class="col-md-6">
+                        <div id="game-video"></div>
+                        
+                    </div>
+                </div>
+            </div>
         </div>
         <script src="./scripts/new_game_info.js"></script>
     </body>

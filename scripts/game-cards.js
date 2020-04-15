@@ -190,6 +190,9 @@ const sendHttpRequest = (method, url) => {
 			game_card.appendChild(game_title);
 
 			container.appendChild(game_card);
+
+			console.log(game.slug);
+			console.log(game.name);
 		});
 	};
 	request.send();
