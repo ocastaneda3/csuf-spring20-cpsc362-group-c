@@ -10,6 +10,7 @@ gamerow22.setAttribute('class','row')
 const gamerow32 = document.getElementById('gamerow3')
 gamerow32.setAttribute('class','row')
 var numCards = 0
+
 const sendHttpRequest = (method, url) => {
 	var request = new XMLHttpRequest();
 	request.open(method, url);
@@ -39,13 +40,15 @@ const sendHttpRequest = (method, url) => {
 			// cardbody.appendChild(cardtitle)
 			card.appendChild(game_img)
 			numCards++
-			console.log(numCards.length)
 		});
 	};
 	
 	request.send();
 };
-var youareel = 'https://api.rawg.io/api/games?ordering=+rating&page_size=15&page='
-var randompage = youareel + Math.floor(Math.random() * 10) + 1;
-sendHttpRequest('GET', randompage);
+var url = 'https://api.rawg.io/api/games?ordering=+rating&page_size=15&page=1'
+sendHttpRequest('GET', url);
 
+function doQuery(){
+	var search = document.getElementById('search')
+	console.log(search.text)
+}

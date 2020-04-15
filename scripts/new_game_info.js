@@ -44,7 +44,29 @@ function getIconName(name) {
     }
     return output
 }
-
+function getRating(id){
+    var rating
+    switch(id){
+        case 1:
+            rating = 'https://www.esrb.org/wp-content/uploads/2019/05/E.svg'
+            break
+        case 2:
+            rating = 'https://www.esrb.org/wp-content/uploads/2019/05/E10plus.svg'
+            break
+        case 3:
+            rating = 'https://www.esrb.org/wp-content/uploads/2019/05/T.svg'
+            break
+        case 4:
+            rating = 'https://www.esrb.org/wp-content/uploads/2019/05/M.svg'
+            break
+        case 5:
+            rating = 'https://www.esrb.org/wp-content/uploads/2019/05/AO.svg'
+            break
+        default:
+            break
+    }
+    return rating
+}
 document.head.appendChild(stylesheet);
 
 
@@ -107,7 +129,8 @@ request.onload = () => {
     storeicon3.setAttribute('data-inline', 'false')
     const span3 = document.getElementById('span3')
     span3.appendChild(storeicon3)
-    
+    const rating = document.getElementById('rating')
+    rating.setAttribute('src', getRating(data.esrb_rating.id))
     // Add Media
     add_video_content(data, media_content_column);
 };
