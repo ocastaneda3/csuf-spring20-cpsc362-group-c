@@ -16,13 +16,48 @@ const sortType = () => {
 
 	return sort;
 };
-
+const filterBy = () => {
+	const filteredBy = document.getElementById('filteredBy');
+	var filter = this.form.get('filteredBy').innerHTML
+	console.log(filter)
+	var id
+	switch(filter){
+		case "Xbox One":
+			id = 1
+			break
+		case "PC":
+			id = 4
+			break
+		case "PS4":
+			id = 18
+			break
+		case "iOS":
+			id = 3
+			break
+		case "Android":
+			id = 21
+			break
+		case "MacOS":
+			id = 5
+			break
+		case "Linux":
+			id = 6
+			break
+		case "Switch":
+			id = 7
+			break
+		default:
+			id = -1
+			break
+	}
+	return id
+}
 function sortGames(){
 	console.log(sortType())
-	resortPage(sortType())
+	resortPage(sortType(),filterBy())
+	filterPage(filterBy(),sortType())
 };
-
-const resortPage = (sort) => {
+const filterPage = (filter, sort) => {
 	page_count.value = 1
 
 	// Clear Page
@@ -35,7 +70,31 @@ const resortPage = (sort) => {
 	console.log('Restoring: ' + page_count.value);
 
 	// Load New Games
-	sendHttpRequest('GET', 'https://api.rawg.io/api/games?dates=1975-01-01,2022-12-31.1975-01-01,2022-12-31'.concat('&ordering=', sort).concat('&page=', page_count.value));
+	if(id != -1){
+		sendHttpRequest('GET', 'https://api.rawg.io/api/games?dates=1975-01-01,2022-12-31.1975-01-01,2022-12-31'.concat('&ordering=', sort).concat('&page=', page_count.value).concat('&platform=').concat(toString(filter)));
+	}else{
+		sendHttpRequest('GET', 'https://api.rawg.io/api/games?dates=1975-01-01,2022-12-31.1975-01-01,2022-12-31'.concat('&ordering=', sort).concat('&page=', page_count.value));
+	}
+};
+const resortPage = (sort, filter) => {
+	page_count.value = 1
+
+	// Clear Page
+	var del = document.getElementById('cards');
+
+	while(del.firstChild){
+		del.removeChild(del.firstChild);
+		console.log('Deleting . . .');
+	}
+	console.log('Restoring: ' + page_count.value);
+
+	// Load New Games
+	if(id != -1){
+		sendHttpRequest('GET', 'https://api.rawg.io/api/games?dates=1975-01-01,2022-12-31.1975-01-01,2022-12-31'.concat('&ordering=', sort).concat('&page=', page_count.value).concat('&platform=').concat(toString(filter)));
+	}else{
+		sendHttpRequest('GET', 'https://api.rawg.io/api/games?dates=1975-01-01,2022-12-31.1975-01-01,2022-12-31'.concat('&ordering=', sort).concat('&page=', page_count.value));
+	}
+	
 };
 
 const nextPage = () => {
@@ -191,8 +250,8 @@ const sendHttpRequest = (method, url) => {
 
 			container.appendChild(game_card);
 
-			console.log(game.slug);
-			console.log(game.name);
+			// console.log(game.slug);
+			// console.log(game.name);
 		});
 	};
 	request.send();
