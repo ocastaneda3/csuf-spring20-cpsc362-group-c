@@ -129,6 +129,17 @@ request.onload = () => {
     storeicon3.setAttribute('data-inline', 'false')
     const span3 = document.getElementById('span3')
     span3.appendChild(storeicon3)
+
+    const storelink4 = document.getElementById('storelink4')
+    storelink4.setAttribute('href', data.stores[3].url)
+    storelink4.innerHTML = data.stores[3].store.name.concat(' ')
+    var storeicon4 = document.createElement('span')
+    storeicon4.setAttribute('class', 'iconify')
+    storeicon4.setAttribute('data-icon', icontype.concat(getIconName(data.stores[3].store.slug)))
+    storeicon4.setAttribute('data-inline', 'false')
+    const span4 = document.getElementById('span4')
+    span4.appendChild(storeicon4)
+
     const rating = document.getElementById('rating')
     rating.setAttribute('src', getRating(data.esrb_rating.id))
     // Add Media
