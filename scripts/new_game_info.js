@@ -39,6 +39,9 @@ function getIconName(name) {
         case "xbox-store":
             output = 'xbox'
             break
+        case "apple-appstore":
+            output = 'apple'
+            break
         default:
             break
     }
@@ -139,9 +142,12 @@ request.onload = () => {
     storeicon4.setAttribute('data-inline', 'false')
     const span4 = document.getElementById('span4')
     span4.appendChild(storeicon4)
-
     const rating = document.getElementById('rating')
     rating.setAttribute('src', getRating(data.esrb_rating.id))
+    var metacriticRating = document.getElementById("metacriticRating")
+    metacriticRating.innerHTML = data.metacritic
+    metacriticRating.setAttribute('aria-valuenow', data.metacritic)
+    metacriticRating.setAttribute('style', 'width: '.concat(data.metacritic).concat('%;'))
     // Add Media
     add_video_content(data, media_content_column);
 };
