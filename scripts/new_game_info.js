@@ -1,30 +1,90 @@
-var add_video_content = (data_, content_column) => {
+const add_video_content = (data_, content_column) => {
 
-    var video = document.getElementById('my-video')
+    const video_temp1 = document.createElement('div');
+    video_temp1.setAttribute('class', 'game__movie');
 
-    var source1 = document.createElement('source')
-    source1.setAttribute('src', '[vid_url]'.replace('[vid_url]', data_.clip.clips.full))
-    source1.type = 'video/mp4'
-    video.appendChild(source1)
-    var videothing = document.getElementById('game-video')
-    videothing.setAttribute('poster', setAttribute('src', '[vid_url]'.replace('[vid_url]', data_.clip.clips.preview)))
+    const video_temp2 = document.createElement('div');
+    video_temp2.setAttribute('class', 'game-card-video');
 
+    const video = document.createElement('video');
+    video.setAttribute('class', 'game-card-video__video');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('loop', '');
+    video.setAttribute('src', '[vid_url]'.replace('[vid_url]', data_.clip.clips.full));
+    video.autoplay = true;
+    video.muted = true;
 
-    span1.appendChild(spanlink1)
-    var script = document.createElement('script')
-    script.src = 'https://vjs.zencdn.net/7.7.5/video.js'
-    var body = getElementsByTagName("BODY")[0]
-    body.appendChild(script)
-
+    video_temp2.appendChild(video);
+    video_temp1.appendChild(video_temp2);
+    content_column.appendChild(video_temp1);
 }
-var stylesheet = document.createElement('link');
 
-stylesheet.setAttribute('href', 'https://bootswatch.com/4/cyborg/bootstrap.css');
-stylesheet.setAttribute('rel', 'stylesheet');
-stylesheet.setAttribute('type', 'text/css');
+const add_screenshot_content = (data_, carousel_container) => {
+
+    var count = 1;
+
+    var screenshot_request = new XMLHttpRequest();
+
+    screenshot_request.open('GET', 'https://api.rawg.io/api/games/[game_id]/screenshots'.replace('[game_id]', data_));
+
+    screenshot_request.onload = () => {
+        var data = JSON.parse(screenshot_request.response);
+
+        data.results.forEach(x => {
+            console.log(x.image);
+
+            var carousel_item = document.createElement('div');
+            if(count == 1){
+                carousel_item.setAttribute('class', 'carousel-item active');
+            }
+            else{
+                carousel_item.setAttribute('class', 'carousel-item');
+            }
+        
+            var screenshot_ = document.createElement('img');
+            screenshot_.setAttribute('id', 'img[count]'.replace('[count]', count));
+            screenshot_.setAttribute('class', 'w-75 d-block round-border');
+            screenshot_.setAttribute('src', x.image);
+            screenshot_.setAttribute('alt', 'Slide Image');
+
+            carousel_item.appendChild(screenshot_);
+
+            carousel_container.appendChild(carousel_item);
+            count = count + 1;
+        });
+    }
+    screenshot_request.send();
+}
+
+const add_store_content = (data_, stores_container) => {
+
+    console.log(data_);
+
+    data_.forEach(x =>{
+        console.log(x.store.name, ' - ', x.url);
+
+        const store_item = document.createElement('a');
+        store_item.setAttribute('href', x.url);
+        store_item.innerHTML = x.store.name.concat(' ');
+
+        const store_logo = document.createElement('span');
+        store_logo.setAttribute('class', 'iconify');
+
+        store_logo.setAttribute('data-icon', 'mdi:'.concat(getIconName(x.store.slug)));
+        store_logo.setAttribute('data-inline', 'false');
+        // store_item_container.appendChild(store_item);
 
 
-function getIconName(name) {
+        const list_element = document.createElement('li');
+        list_element.setAttribute('class', 'list-group-item');
+        list_element.appendChild(store_item);
+        list_element.appendChild(store_logo);
+
+        stores_container.appendChild(list_element);
+    });
+}
+
+var getIconName = (name) => {
     var output = name
     switch (name) {
         case "xbox360":
@@ -47,7 +107,8 @@ function getIconName(name) {
     }
     return output
 }
-function getRating(id){
+
+var getRating = (id) => {
     var rating
     switch(id){
         case 1:
@@ -70,28 +131,27 @@ function getRating(id){
     }
     return rating
 }
-document.head.appendChild(stylesheet);
 
+var stylesheet = document.createElement('link');
+
+stylesheet.setAttribute('href', 'https://bootswatch.com/4/cyborg/bootstrap.css');
+stylesheet.setAttribute('rel', 'stylesheet');
+stylesheet.setAttribute('type', 'text/css');
+
+document.head.appendChild(stylesheet);
 
 const app = document.getElementById('game-info');
 
+const main_background = document.getElementById('main-box');
+main_background.setAttribute('style', "background: url('[image_url]'); background-size: cover;".replace('[image_url]', './images/grey_transparent_background.svg'));
+
 var query = window.location.search.substring(1).split('=')[1];
 var request = new XMLHttpRequest();
-var request2 = new XMLHttpRequest();
-request2.open('GET', 'https://api.rawg.io/api/games/'.concat(query).concat('/screenshots'));
-request2.onload = () => {
-    var data = JSON.parse(request2.response);
-    console.log(data.results[0].image)
-    var img1 = document.getElementById('img1')
-    img1.setAttribute('src', data.results[0].image)
-    var img2 = document.getElementById('img2')
-    img2.setAttribute('src', data.results[1].image)
-    var img3 = document.getElementById('img3')
-    img3.setAttribute('src', data.results[2].image)
-}
+
 request.open('GET', 'https://api.rawg.io/api/games/'.concat(query));
 
 request.onload = () => {
+
     var data = JSON.parse(request.response);
     document.head.parentNode.setAttribute('style', "background: url('[image_url]'); background-size: cover;".replace('[image_url]', data.background_image));
     const game_title = document.getElementById('game_title');
@@ -102,55 +162,26 @@ request.onload = () => {
     game_text.setAttribute('class', 'card-text');
     game_text.innerHTML = data.description;
 
-    const media_content_column = document.getElementById('game-video');
-    media_content_column.setAttribute('class', 'game-content-columns');
-    const storelink1 = document.getElementById('storelink1')
-    storelink1.setAttribute('href', data.stores[0].url)
-    storelink1.innerHTML = data.stores[0].store.name.concat(' ')
-    var storeicon1 = document.createElement('span')
-    storeicon1.setAttribute('class', 'iconify')
-    var icontype = 'mdi:'
-    storeicon1.setAttribute('data-icon', icontype.concat(getIconName(data.stores[0].store.slug)))
-    storeicon1.setAttribute('data-inline', 'false')
-    const span1 = document.getElementById('span1')
-    span1.appendChild(storeicon1)
-    const storelink2 = document.getElementById('storelink2')
-    storelink2.setAttribute('href', data.stores[1].url)
-    storelink2.innerHTML = data.stores[1].store.name.concat(' ')
-    var storeicon2 = document.createElement('span')
-    storeicon2.setAttribute('class', 'iconify')
-    storeicon2.setAttribute('data-icon', icontype.concat(getIconName(data.stores[1].store.slug)))
-    storeicon2.setAttribute('data-inline', 'false')
-    const span2 = document.getElementById('span2')
-    span2.appendChild(storeicon2)
-    const storelink3 = document.getElementById('storelink3')
-    storelink3.setAttribute('href', data.stores[2].url)
-    storelink3.innerHTML = data.stores[2].store.name.concat(' ')
-    var storeicon3 = document.createElement('span')
-    storeicon3.setAttribute('class', 'iconify')
-    storeicon3.setAttribute('data-icon', icontype.concat(getIconName(data.stores[2].store.slug)))
-    storeicon3.setAttribute('data-inline', 'false')
-    const span3 = document.getElementById('span3')
-    span3.appendChild(storeicon3)
+    const video_content_column = document.getElementById('game-video');
+    video_content_column.setAttribute('class', 'game-content-columns');
 
-    const storelink4 = document.getElementById('storelink4')
-    storelink4.setAttribute('href', data.stores[3].url)
-    storelink4.innerHTML = data.stores[3].store.name.concat(' ')
-    var storeicon4 = document.createElement('span')
-    storeicon4.setAttribute('class', 'iconify')
-    storeicon4.setAttribute('data-icon', icontype.concat(getIconName(data.stores[3].store.slug)))
-    storeicon4.setAttribute('data-inline', 'false')
-    const span4 = document.getElementById('span4')
-    span4.appendChild(storeicon4)
+    const screenshot_content_container = document.getElementById('carousel-inner');
+    screenshot_content_container.setAttribute('class', 'carousel-inner');
+    screenshot_content_container.setAttribute('role', 'listbox');
+
+    // Rating
     const rating = document.getElementById('rating')
-    rating.setAttribute('src', getRating(data.esrb_rating.id))
+    // rating.setAttribute('src', getRating(data.esrb_rating.id))
+
     var metacriticRating = document.getElementById("metacriticRating")
     metacriticRating.innerHTML = data.metacritic
     metacriticRating.setAttribute('aria-valuenow', data.metacritic)
     metacriticRating.setAttribute('style', 'width: '.concat(data.metacritic).concat('%;'))
+    
     // Add Media
-    add_video_content(data, media_content_column);
+    add_video_content(data, video_content_column);
+    add_screenshot_content(data.slug, screenshot_content_container);
+    add_store_content(data.stores, document.getElementById('stores-list'));
 };
 
 request.send();
-request2.send();
