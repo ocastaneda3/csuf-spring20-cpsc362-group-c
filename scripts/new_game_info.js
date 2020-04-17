@@ -171,7 +171,7 @@ request.onload = () => {
 
     // Rating
     const rating = document.getElementById('rating')
-    // rating.setAttribute('src', getRating(data.esrb_rating.id))
+    rating.setAttribute('src', getRating(data.esrb_rating.id))
 
     var metacriticRating = document.getElementById("metacriticRating")
     metacriticRating.innerHTML = data.metacritic
