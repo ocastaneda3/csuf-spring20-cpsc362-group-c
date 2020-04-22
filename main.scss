@@ -6,9 +6,18 @@ h4,h3,h2,h5,p,a{
 $body-bg: #000;
 
 @import "node_modules/bootstrap/scss/bootstrap";
+.form-control{
+  background-color: #313437;
+}
+.box{
+  background-color: #313437;
+}
+.carousel-inner{
+  background-color: #000;
+}
 .footer-basic {
     padding: 40px 0;
-    background-color: #111111;
+    background-color: #000000;
     color: rgb(173, 173, 173);
   }
   
@@ -66,12 +75,12 @@ $body-bg: #000;
     margin-bottom: 0;
   }
   .features-boxed {
-    color: #313437;
-    background-color: #eef4f7;
+    color: #b6b6b6;
+    background-color: #000000;
   }
   
   .features-boxed p {
-    color: #7d8285;
+    color: #747474;
   }
   
   .features-boxed h2 {
@@ -110,13 +119,13 @@ $body-bg: #000;
   .features-boxed .item .box {
     text-align: center;
     padding: 30px;
-    background-color: #fff;
+    background-color: rgb(29, 29, 29);
     margin-bottom: 30px;
   }
   
   .features-boxed .item .icon {
     font-size: 60px;
-    color: #1485ee;
+    color: #ffffff;
     margin-top: 20px;
     margin-bottom: 35px;
   }
@@ -126,7 +135,7 @@ $body-bg: #000;
     font-size: 18px;
     margin-bottom: 8px;
     margin-top: 0;
-    color: inherit;
+    color: rgb(197, 197, 197);
   }
   
   .features-boxed .item .description {

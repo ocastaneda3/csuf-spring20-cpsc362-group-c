@@ -9880,9 +9880,21 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.form-control {
+  background-color: #313437;
+}
+
+.box {
+  background-color: #313437;
+}
+
+.carousel-inner {
+  background-color: #000;
+}
+
 .footer-basic {
   padding: 40px 0;
-  background-color: #111111;
+  background-color: #000000;
   color: #adadad;
 }
 
@@ -9941,12 +9953,12 @@ h3 {
 }
 
 .features-boxed {
-  color: #313437;
-  background-color: #eef4f7;
+  color: #b6b6b6;
+  background-color: #000000;
 }
 
 .features-boxed p {
-  color: #7d8285;
+  color: #747474;
 }
 
 .features-boxed h2 {
@@ -9984,13 +9996,13 @@ h3 {
 .features-boxed .item .box {
   text-align: center;
   padding: 30px;
-  background-color: #fff;
+  background-color: #1d1d1d;
   margin-bottom: 30px;
 }
 
 .features-boxed .item .icon {
   font-size: 60px;
-  color: #1485ee;
+  color: #ffffff;
   margin-top: 20px;
   margin-bottom: 35px;
 }
@@ -10000,7 +10012,7 @@ h3 {
   font-size: 18px;
   margin-bottom: 8px;
   margin-top: 0;
-  color: inherit;
+  color: #c5c5c5;
 }
 
 .features-boxed .item .description {
