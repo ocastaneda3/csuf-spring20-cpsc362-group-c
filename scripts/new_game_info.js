@@ -182,6 +182,16 @@ request.onload = () => {
     add_video_content(data, video_content_column);
     add_screenshot_content(data.slug, screenshot_content_container);
     add_store_content(data.stores, document.getElementById('stores-list'));
+    var disqus_config = function () {
+        this.page.url = query;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = query; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://gamebuddy-1.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
 };
 
 request.send();
