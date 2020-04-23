@@ -142,9 +142,6 @@ document.head.appendChild(stylesheet);
 
 const app = document.getElementById('game-info');
 
-const main_background = document.getElementById('main-box');
-main_background.setAttribute('style', "background: url('[image_url]'); background-size: cover;".replace('[image_url]', './images/grey_transparent_background.svg'));
-
 var query = window.location.search.substring(1).split('=')[1];
 var request = new XMLHttpRequest();
 
