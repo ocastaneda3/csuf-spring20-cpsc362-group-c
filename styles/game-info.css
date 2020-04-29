@@ -14,7 +14,12 @@ h4, h3, h2, h5, p {
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
     margin-left: 48px;
-    width: 66%;
+}
+
+.comment-column{
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
 }
 
 .game-title{
@@ -64,7 +69,7 @@ h4, h3, h2, h5, p {
 
 .list-group {
     margin: 10px 0px 0px 48px;
-    max-width: 66%;
+    max-width: 100%;
     display: grid !important;
     grid-gap: 5px;
     grid-template-columns: auto auto auto;
@@ -78,13 +83,16 @@ h4, h3, h2, h5, p {
 }
 
 .carousel-inner {
-    width: 88% !important;
-    margin-left: 48px;
-    margin-top: 10px;
     margin: 10px 0px 0px 48px !important;
+    width: auto !important;
 }
 
 .col-md-6{
     margin: 25px 0px 25px 0px;
     border-radius: 6px;
+}
+
+.round-border{
+    border-radius: 6px;
+    width: 100% !important
 }

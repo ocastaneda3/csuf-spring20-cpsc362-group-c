@@ -43,7 +43,7 @@ const add_screenshot_content = (data_, carousel_container) => {
         
             var screenshot_ = document.createElement('img');
             screenshot_.setAttribute('id', 'img[count]'.replace('[count]', count));
-            screenshot_.setAttribute('class', 'w-75 d-block round-border');
+            screenshot_.setAttribute('class', 'd-block round-border');
             screenshot_.setAttribute('src', x.image);
             screenshot_.setAttribute('alt', 'Slide Image');
 
@@ -150,7 +150,7 @@ request.open('GET', 'https://api.rawg.io/api/games/'.concat(query));
 request.onload = () => {
 
     var data = JSON.parse(request.response);
-    document.head.parentNode.setAttribute('style', "background: url('[image_url]'); background-size: cover;".replace('[image_url]', data.background_image));
+    document.head.parentNode.setAttribute('style', "background: url('[image_url]'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;".replace('[image_url]', data.background_image));
     const game_title = document.getElementById('game_title');
     game_title.setAttribute('class', 'card-title');
     game_title.textContent = data.name;
