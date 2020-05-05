@@ -16,7 +16,7 @@ const nextPage = () => {
 	console.log('Next: ' + page_count.value);
 
 	// Load New Games
-	sendHttpRequest('GET', 'https://api.rawg.io/api/developers'.concat('?page=',page_count.value));
+	sendHttpRequest('GET', 'https://api.rawg.io/api/publishers'.concat('?page=',page_count.value));
 };
 
 /************************************************/
@@ -37,7 +37,7 @@ const prevPage = () => {
 		}
 
 		// Load New Games
-		sendHttpRequest('GET', 'https://api.rawg.io/api/developers'.concat('?page=',page_count.value));
+		sendHttpRequest('GET', 'https://api.rawg.io/api/publishers'.concat('?page=',page_count.value));
 	}
 	console.log('Prev: ' + page_count.value);
 };
@@ -82,11 +82,10 @@ const sendHttpRequest = (method, url) => {
 			game_title.className = 'heading heading_4';
 			game_title.textContent = game.name;
 			game_card.title = game.slug;
-
-			// Set onClick Function
-			// game_card.onclick = function(){
-			// 	window.location.href = './developers.html?title='.concat(this.name);
-			// };
+			 //Set onClick Function
+			game_card.onclick = function(){
+			 	window.location.href = './devinfo.html'.concat(this.id);
+			};
 			
 			game_card.appendChild(game_img);
 			// game_card.appendChild(platforms_list);
@@ -132,7 +131,7 @@ app.appendChild(page_count);
 /************************************************/
 /* Initialize Data                              */
 /************************************************/
-sendHttpRequest('GET', 'https://api.rawg.io/api/developers');
+sendHttpRequest('GET', 'https://api.rawg.io/api/publishers');
 
 nextBtn.addEventListener('click', nextPage);
 prevBtn.addEventListener('click', prevPage);
