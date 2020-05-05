@@ -53,6 +53,50 @@ const prevPage = () => {
 /*----------------------------------------------*/
 /* - Send XMLHttpRequest to get data          */
 /************************************************/
+const sendHttpRequest2 = (method, url) => {
+	var request = new XMLHttpRequest();
+
+	request.open(method, url);
+	
+	request.onload = () => {
+		var data = JSON.parse(request.response);
+	
+		data.results.forEach(game => {
+			const game_card = document.createElement('div');
+			// game_card.setAttribute('class', 'card border-secondary mb-3');
+			game_card.className = 'card border-secondary mb-3';
+	
+			// Get Game Image
+			const game_img = document.createElement('img');
+			game_img.className = 'background';
+			game_img.src = game.image_background;
+
+			// Get Platforms
+			// const platforms_list = document.createElement('div');
+			// platforms_list.className = 'platforms';
+			// getPlatformsList(game, games_count);
+
+			// Get Game Name
+			const game_title = document.createElement('div');
+			// game_title.setAttribute('class', 'card-header')
+			game_title.className = 'heading heading_4';
+			game_title.textContent = game.name;
+			game_card.title = game.slug;
+
+			 //Set onClick Function
+			game_card.onclick = function(){
+			 	window.location.href = './devinfo.html?title='.concat(game.slug);
+			};
+			
+			game_card.appendChild(game_img);
+			// game_card.appendChild(platforms_list);
+			game_card.appendChild(game_title);
+
+			container.appendChild(game_card);
+		});
+	};
+	request.send();
+};
 const sendHttpRequest = (method, url) => {
 	var request = new XMLHttpRequest();
 
@@ -96,6 +140,7 @@ const sendHttpRequest = (method, url) => {
 		});
 	};
 	request.send();
+	
 };
 
 const app = document.getElementById('game-card-list');

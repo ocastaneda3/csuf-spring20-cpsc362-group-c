@@ -27,3 +27,56 @@ request.onload = () => {
 };
 
 request.send();
+
+const app2 = document.getElementById('game-card-list');
+
+const container = document.createElement('div');
+container.setAttribute('class', 'container-2');
+container.setAttribute('id', 'cards');
+
+
+
+var request2 = new XMLHttpRequest();
+request2.open('GET', 'https://api.rawg.io/api/games?publishers='.concat(query));
+
+request2.onload = () => {
+
+    var data = JSON.parse(request2.response);
+	
+		data.results.forEach(game => {
+			const game_card = document.createElement('div');
+			// game_card.setAttribute('class', 'card border-secondary mb-3');
+			game_card.className = 'card-2 border-secondary mb-3';
+	
+			// Get Game Image
+			const game_img = document.createElement('img');
+			game_img.className = 'background-2';
+			game_img.src = game.background_image;
+
+			// Get Platforms
+			// const platforms_list = document.createElement('div');
+			// platforms_list.className = 'platforms';
+			// getPlatformsList(game, games_count);
+
+			// Get Game Name
+			const game_title = document.createElement('div');
+			// game_title.setAttribute('class', 'card-header')
+			game_title.className = 'heading-2 heading_42';
+			game_title.textContent = game.name;
+			game_card.title = game.slug;
+
+			 //Set onClick Function
+			game_card.onclick = function(){
+			 	window.location.href = './game.html?title='.concat(game.slug);
+			};
+			
+			game_card.appendChild(game_img);
+			// game_card.appendChild(platforms_list);
+			game_card.appendChild(game_title);
+
+			container.appendChild(game_card);
+		});
+
+};
+request2.send();
+ app2.appendChild(container);
