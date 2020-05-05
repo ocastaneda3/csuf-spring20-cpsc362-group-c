@@ -82,9 +82,10 @@ const sendHttpRequest = (method, url) => {
 			game_title.className = 'heading heading_4';
 			game_title.textContent = game.name;
 			game_card.title = game.slug;
+
 			 //Set onClick Function
 			game_card.onclick = function(){
-			 	window.location.href = './devinfo.html'.concat(this.id);
+			 	window.location.href = './devinfo.html?title='.concat(game.slug);
 			};
 			
 			game_card.appendChild(game_img);

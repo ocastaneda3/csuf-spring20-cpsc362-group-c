@@ -49,15 +49,6 @@
             </form>
         </div>
     </nav>
-    <!--Review system -->
-    <div class="stars" data-rating="0">
-        <span class="star">&nbsp;</span>
-        <span class="star">&nbsp;</span>
-        <span class="star">&nbsp;</span>
-        <span class="star">&nbsp;</span>
-        <span class="star">&nbsp;</span>
-    </div>
-    <script src="./scripts/rating.js"></script>
     <!-- Main Body -->
     <div id="game-info" class="card bg-dark text-black border-0">
         <div class="card-img-overlay">
@@ -83,12 +74,23 @@
                     
                 </div>
                 <div id="comment-section" class="comment-column">
-                    <div class="jumbotron"><div id="disqus_thread"></div></div>
-                </div>
+                    <!--Review system -->
+                    <div class="stars" data-rating="0">
+                        <span class="star">&nbsp;</span>
+                        <span class="star">&nbsp;</span>
+                        <span class="star">&nbsp;</span>
+                        <span class="star">&nbsp;</span>
+                        <span class="star">&nbsp;</span>
+                    </div>
+                     <div class="jumbotron">
+                         <div id="disqus_thread"></div>
+                     </div>
+                 </div>
             </div>            
         </div>
     </div>
 
+    <script src="./scripts/rating.js"></script>
     <script id="dsq-count-scr" src="//gamebuddy-1.disqus.com/count.js" async></script>
     <script src="./scripts/new_game_info.js"></script>
     <script src="https://code.iconify.design/1/1.0.5/iconify.min.js"></script>

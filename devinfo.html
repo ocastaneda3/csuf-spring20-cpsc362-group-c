@@ -8,7 +8,6 @@
     <script src="https://unpkg.com/react@16.7.0/umd/react.production.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet">
     <link href="./styles/game-info.css" rel="stylesheet">
-    <link href="./styles/rating.css" rel="stylesheet">
     <link href="./gameinfo.css" rel="stylesheet">
     <link href="https://vjs.zencdn.net/7.7.5/video-js.css" rel="stylesheet" />
     <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
@@ -49,32 +48,20 @@
             </form>
         </div>
     </nav>
-    <!--Review system -->
-    <div class="stars" data-rating="0">
-        <span class="star">&nbsp;</span>
-        <span class="star">&nbsp;</span>
-        <span class="star">&nbsp;</span>
-        <span class="star">&nbsp;</span>
-        <span class="star">&nbsp;</span>
-    </div>
-    <script src="./scripts/rating.js"></script>
     <!-- Main Body -->
     <div id="game-info" class="card bg-dark text-black border-0">
         <div class="card-img-overlay">
             <div class="row transparent_blackness ">
                 <div id="data-column" class="col-md-6">
-                    <h2 id="game_title"></h2>
-                    <p id="game-description"></p>
-                    <div id="media-column" class="col-md-6"></div>
-                    <div id="comment-section" class="comment-column">
-                    <div class="jumbotron">
-                    <div id="disqus_thread"></div></div>
+                    <h2 id="dev-title"></h2>
+                    <p id="dev-description"></p>
+                    
                 </div>
+                <div id="media-column" class="col-md-6"></div>
             </div>            
         </div>
     </div>
 
-    <script id="dsq-count-scr" src="//gamebuddy-1.disqus.com/count.js" async></script>
     <script src="./scripts/dev-info.js"></script>
     <script src="https://code.iconify.design/1/1.0.5/iconify.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
