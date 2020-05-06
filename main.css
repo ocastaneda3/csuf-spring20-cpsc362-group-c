@@ -9880,6 +9880,11 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.btn-primary {
+  font-family: "Saira Semi Condensed", sans-serif;
+  background-color: #1d1d1d;
+}
+
 .form-control {
   background-color: #313437;
 }
@@ -9953,7 +9958,6 @@ h3 {
 }
 
 .features-boxed {
-  padding-top: 40px;
   color: #b6b6b6;
   background-color: #000000;
 }
