@@ -18,12 +18,12 @@ const sendHttpRequest = (method, url) => {
 		var data = JSON.parse(request.response);
 		data.results.forEach(game => {
 			const column = document.createElement('div')
-			column.setAttribute('class', 'col-sm')
+			column.setAttribute('class', 'col-game')
 			const card = document.createElement('div')
 			card.setAttribute('class', 'card border-secondary mb-3')
 			card.setAttribute('style', 'max-width: 20rem;')
 			const cardheader = document.createElement('div')
-			cardheader.setAttribute('class', 'card-header')
+			cardheader.setAttribute('class', 'card-header-game body-game-card')
 			cardheader.textContent = game.name
 			const game_img = document.createElement('img');
 			game_img.className = 'background';

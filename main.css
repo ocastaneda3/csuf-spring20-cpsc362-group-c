@@ -9953,6 +9953,7 @@ h3 {
 }
 
 .features-boxed {
+  padding-top: 40px;
   color: #b6b6b6;
   background-color: #000000;
 }
@@ -10019,6 +10020,36 @@ h3 {
   font-size: 15px;
   margin-top: 15px;
   margin-bottom: 20px;
+}
+
+.carousel-inner {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.card {
+  overflow: visible;
+}
+
+.col-game {
+  position: relative;
+  width: 100%;
+  padding-right: 4px;
+  padding-left: 4px;
+  padding-bottom: 2px;
+  padding-top: 6px;
+  flex-basis: 0;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  max-width: 100%;
+}
+
+.body-game-card {
+  text-align: center;
+}
+
+.card-header-game {
+  font-family: "Saira Semi Condensed", sans-serif;
+  padding: 1rem;
 }
 
 /*# sourceMappingURL=main.css.map */
