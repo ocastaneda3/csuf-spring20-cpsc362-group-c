@@ -5,10 +5,9 @@ stylesheet.setAttribute('type', 'text/css');
 document.head.appendChild(stylesheet);
 
 const app = document.getElementById('game-info');
-
+const logospace = document.getElementById("logoSpace")
 var query = window.location.search.substring(1).split('=')[1];
 var request = new XMLHttpRequest();
-
 request.open('GET', 'https://api.rawg.io/api/publishers/'.concat(query));
 
 request.onload = () => {
@@ -23,10 +22,27 @@ request.onload = () => {
     const dev_description = document.getElementById('dev-description');
     dev_description.setAttribute('class', 'card-text');
     dev_description.innerHTML = data.description;
-
+    logoReq(data.name)
+    
+    
 };
 
 request.send();
+function logoReq(name){
+    var request3 = new XMLHttpRequest();
+    request3.open('GET', "https://autocomplete.clearbit.com/v1/companies/suggest?query=".concat(name));
+    request3.onload = () => {
+    
+        var data = JSON.parse(request3.response);
+        logospace.setAttribute('class', 'logo')
+        logospace.setAttribute('src', "https://logo.clearbit.com/".concat(data[0].logo).concat("?size=80&greyscale=true"))
+    };
+    request3.send()
+}
+
+
+
+
 
 const app2 = document.getElementById('game-card-list');
 

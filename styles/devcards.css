@@ -49,3 +49,10 @@ h1 {
 .card-header-2 {
   text-align: center;
 }
+.logo{
+  text-align: center;
+  display: block;
+  object-fit: contain;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
